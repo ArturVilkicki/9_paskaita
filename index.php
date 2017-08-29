@@ -5,20 +5,19 @@
 	return $cost * 2 * 1.21 +5;
 }
 */
-function getVolume($ilgis, $plotis, $aukstis) {
-	$Volume = round($ilgis * $plotis * $aukstis);
-	return $Volume;
+$plotis=3;
+$gylis = 1.5;
+function getVolume($a, $b =3, $c = 1.5) {
+	return $a *$b * $c;
 }
-function getTrucks($Volume,$trucks_volume) {
-	$trucks = ceil($Volume/$trucks_volume);
-	return $trucks;
+function getTrucks($volume,$t_volume) {
+	 $trucks = ceil($volume/$t_volume);
+	 return $trucks;
 }
 
-function eilutes () {
-	for ($i=0; $i <= 50; $i++) { 
-		echo "<tr>";
-		echo "</tr>";
-	}
+function getKaina ($count, $price) {
+	$kaina = $count * $price;
+	return $kaina;
 }
  /*function getArea($x, $y, $z) {
  	$area = round(2 * $x * $z + 2 * $y * $z + $x * $y);
@@ -51,38 +50,51 @@ function eilutes () {
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<table class="table">
-			<thead>
-    			<tr class="lentele">
-      				<th colspan="4" class="background lentele">Baseinai</th>
-      				<th colspan="2" class="background lentele">Autocisternu kiekis</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-    			<tr class="background lentele">
-      				<td class="lentele">Ilgis (m.)</td>
-      				<td class="lentele">Plotis (m.)</td>
-      				<td class="lentele">Gylis (m.)</td>
-      				<td class="lentele">Turis (m.)</td>
-      				<td class="lentele">10 m3</td>
-      				<td class="lentele">30 m3</td>
-    			</tr>
-    			<tr>
-    			<?php
-				echo "<table class='table'>";
-				for ($row=1; $row <= 50; $row++) { 
-					echo "<tr>";
-					for ($col=1; $col <= 6; $col++) { 
-					$p = $col * $row;
-					echo "<td>$p</td>";
-				}
-				echo "</tr>";
-				}
-				echo "</table>";
-				?>
-				</tr>
-   			</tbody>
-			</table>
+	<table class="table">
+	<thead>
+    	<tr class="lentele">
+      		<th colspan="4" class="background lentele">Baseinai</th>
+      		<th colspan="4" class="background lentele">Autocisternu kiekis</th>
+    	</tr>
+    	<tr>
+    		<th>Ilgis</th>
+    		<th>Plotis</th>
+    		<th>Gylis</th>
+    		<th>Turis</th>
+    		<th>10m3</th>
+    		<th>Kaina</th>
+    		<th>30m3</th>
+    		<th>Kaina</th>
+    	</tr>
+
+    	
+  	</thead>
+  	<tbody>
+  		<?php
+  		for ($ilgis=1; $ilgis <= 50 ; $ilgis++) {
+  			$kaina10 = getKaina(getTrucks(getVolume($ilgis),10),100);
+  			$kaina30 = getKaina(getTrucks(getVolume($ilgis),30),200);
+
+  			$class10 = "";
+  			$class30 = "";
+
+  			if ($kaina10 < $kaina30) {
+  				$class10 = "table-success";
+  			} else {
+  				$class30 = "table-success";
+  			}
+  			echo "<tr><td>$ilgis</td>
+  			<td>$plotis</td>
+  			<td>$gylis</td>
+  			<td>" . getVolume($ilgis) . "</td>
+  			<td>" . getTrucks(getVolume($ilgis),10) . "</td>
+  			<td class='$class10'>" . getKaina(getTrucks(getVolume($ilgis),10),100) . "</td>
+  			<td>" . getTrucks(getVolume($ilgis),30) . "</td>
+  			<td class = '$class30'>" . getKaina(getTrucks(getVolume($ilgis),30),200) . "</td></tr>";
+  		}
+    	?>
+   	</tbody>
+	</table>
 			
 
 		</div>

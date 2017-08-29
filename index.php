@@ -9,6 +9,17 @@ function getVolume($ilgis, $plotis, $aukstis) {
 	$Volume = round($ilgis * $plotis * $aukstis);
 	return $Volume;
 }
+function getTrucks($Volume,$trucks_volume) {
+	$trucks = ceil($Volume/$trucks_volume);
+	return $trucks;
+}
+
+function eilutes () {
+	for ($i=0; $i <= 50; $i++) { 
+		echo "<tr>";
+		echo "</tr>";
+	}
+}
  /*function getArea($x, $y, $z) {
  	$area = round(2 * $x * $z + 2 * $y * $z + $x * $y);
  	return $area;
@@ -40,53 +51,41 @@ function getVolume($ilgis, $plotis, $aukstis) {
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-
-
-<table class="table">
-<thead>
-    <tr class="lentele">
-      <th colspan="4" class="background lentele">Baseinai</th>
-      <th colspan="2" class="background lentele">Autocisternu kiekis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="background lentele">
-      <td class="lentele">Ilgis (m.)</td>
-      <td class="lentele">Plotis (m.)</td>
-      <td class="lentele">Gylis (m.)</td>
-      <td class="lentele">Turis (m.)</td>
-      <td class="lentele">10 m3</td>
-      <td class="lentele">30 m3</td>
-    </tr>
-   </tbody>
-</table>
-
-
-
-		
-			<?php
-
-				/*if (1 == 1) {
-					echo "Taip";
-				} else {
-					echo "NE";
-				}*/
-				/*$i = 0;
-				while ($i <10) {
-					echo "<div class = 'tile' id='$i'>$i</div>";
-					$i++;
-				}*/
-				/*for ($i=0; $i < 500; $i++) { 
-					echo "<div class = 'tile' id='$i'>$i</div>";
-				}*/
-				//echo "Prekes pardavimo kaina yra " . getPrice(50) . "EUR.<br>";
-				//echo "Baseino turis yra " .getVolume(30,30,50.333333) . " m3.<br>";
-				//echo "Baseino vidaus turiui apkloti reikia : " . getArea(100,100,100) . " m2.<br>";
-				//echo "Plyteliu reikia : " . getTiles(1.1) . " vienetai";
-			?>
+			<table class="table">
+			<thead>
+    			<tr class="lentele">
+      				<th colspan="4" class="background lentele">Baseinai</th>
+      				<th colspan="2" class="background lentele">Autocisternu kiekis</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+    			<tr class="background lentele">
+      				<td class="lentele">Ilgis (m.)</td>
+      				<td class="lentele">Plotis (m.)</td>
+      				<td class="lentele">Gylis (m.)</td>
+      				<td class="lentele">Turis (m.)</td>
+      				<td class="lentele">10 m3</td>
+      				<td class="lentele">30 m3</td>
+    			</tr>
+    			<tr>
+    			<?php
+				echo "<table class='table'>";
+				for ($row=1; $row <= 50; $row++) { 
+					echo "<tr>";
+					for ($col=1; $col <= 6; $col++) { 
+					$p = $col * $row;
+					echo "<td>$p</td>";
+				}
+				echo "</tr>";
+				}
+				echo "</table>";
+				?>
+				</tr>
+   			</tbody>
+			</table>
 			
+
 		</div>
-		
 	</div>
 </div>
 </body>
